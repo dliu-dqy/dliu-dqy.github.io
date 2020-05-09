@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>RX78 GP03D 石斛兰</title>
+    <url>/2020/04/16/PhotoTest/</url>
+    <content><![CDATA[<p><img src="/2020/04/16/PhotoTest/1.jpg" alt></p>
+]]></content>
+  </entry>
+  <entry>
     <title>水月雨银色飞船简评</title>
     <url>/2020/04/24/MoonDrop/</url>
     <content><![CDATA[<p>（以下内容均为极为主观的评价）  </p>
@@ -27,21 +33,6 @@
 <p>对水家的调音赞一个，总而言之挺符合我的口味的。</p>
 <p>最后附上皂片</p>
 <p><img src="/2020/04/24/MoonDrop/earphone.jpg" alt></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>RX78 GP03D 石斛兰</title>
-    <url>/2020/04/16/PhotoTest/</url>
-    <content><![CDATA[<p><img src="/2020/04/16/PhotoTest/1.jpg" alt></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Blog-Initialized</title>
-    <url>/2020/04/16/hello-world/</url>
-    <content><![CDATA[<p>第一篇博客，稍微写点规划吧</p>
-<p>主要是为了记录一些好玩的东西，学习的积累，以及一些前端技术的实践。</p>
-<p>短期的目标是实现ナツメ的Live-2d</p>
-<p>就这样。</p>
 ]]></content>
   </entry>
   <entry>
@@ -94,6 +85,41 @@
 <p>今天就看到这里吧。就当React入门惹</p>
 <p>资料参考：<a href="http://www.runoob.com" target="_blank" rel="noopener">www.runoob.com</a></p>
 <p><img src="/2020/05/04/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/react.png" alt="LOGO"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Blog-Initialized</title>
+    <url>/2020/04/16/hello-world/</url>
+    <content><![CDATA[<p>第一篇博客，稍微写点规划吧</p>
+<p>主要是为了记录一些好玩的东西，学习的积累，以及一些前端技术的实践。</p>
+<p>短期的目标是实现ナツメ的Live-2d</p>
+<p>就这样。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>RN学习笔记-2</title>
+    <url>/2020/05/09/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/</url>
+    <content><![CDATA[<h1 id="RN学习笔记-2"><a href="#RN学习笔记-2" class="headerlink" title="RN学习笔记-2"></a>RN学习笔记-2</h1><h2 id="RN的构成"><a href="#RN的构成" class="headerlink" title="RN的构成"></a>RN的构成</h2><p>ps：上一章看漏了一个概念：自顶向下流动。这个概念的意思是，<br>在类内部，属性（即参数）的传递方向是从父元素向子元素流动的。</p>
+<h3 id="构成1-React"><a href="#构成1-React" class="headerlink" title="构成1 React"></a>构成1 React</h3><h4 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h4><p>一种固定的参数，与上一章讲的state不同，其在函数内部是不可变的，是一个只读属性。跟state的区别是，props接收功能组件外部赋予的信息，而state负责在组件内部传输信息。</p>
+<p>举个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">content</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>()&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.state = &#123;</span><br><span class="line">			name:<span class="string">"233"</span></span><br><span class="line">		&#125;</span><br><span class="line">	<span class="comment">//这里规定了state内部的参数名。</span></span><br><span class="line">	&#125;</span><br><span class="line">	render()&#123;</span><br><span class="line">		<span class="keyword">return</span>(</span><br><span class="line">			&lt;div&gt;</span><br><span class="line">			&lt;Attri bute = &#123;<span class="keyword">this</span>.state.name&#125; /&gt;</span><br><span class="line">			&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">		);</span></span><br><span class="line"><span class="regexp">		/</span><span class="regexp">/返回一个div标签以及内容</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class Attri extends React.Component&#123;</span></span><br><span class="line"><span class="regexp">	 render() &#123;</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;h1&gt;&#123;this.props.name&#125;&lt;/</span>h1&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//规定了Attri属性的展示方式，即&lt;h1&gt;标签</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	类似于this.state.name=&gt;whis.props.name=&gt;&lt;h1&gt;内容    这样的流动方式</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h5 id="验证props"><a href="#验证props" class="headerlink" title="验证props"></a>验证props</h5><p>使用propTypes来验证参数的属性。如果是无效参数，则JS控制台给出警告，这时会强行转换格式。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Attribute.propTypes = &#123;</span><br><span class="line">	a:propTypes.string</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*这段代码写在Attribute类中，起验证作用。其中a为设定好的属性。</span></span><br><span class="line"><span class="comment">待验证的类型可以是多种多样的。</span></span><br><span class="line"><span class="comment">既可以是类似于array，number，bool这种简单属性，</span></span><br><span class="line"><span class="comment">也可以是node，elements这种待渲染的对象，</span></span><br><span class="line"><span class="comment">或者是选定值</span></span><br><span class="line"><span class="comment">(oneOf(['x','y']),</span></span><br><span class="line"><span class="comment">oneOfType([React.Proptypes.string,React.Proptypes.number])）</span></span><br><span class="line"><span class="comment">以及很多带有限定意味的定义式组合元素。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h4 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h4><p>几个很有React特色的约定。</p>
+<p>1.绑定事件属性的命名法：与HTML常用的全小写不同，采用驼峰命名。</p>
+<p>2.使用函数而不是字符串来作为事件处理函数。</p>
+<p>3.与HTML中一旦函数返回false便不执行该事件不同，必须使用preventDefault来阻止。<br>如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ActionLink</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="comment">//定义一个函数</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">	<span class="comment">//这里定义为阻止这个函数执行</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'链接被点击'</span>);</span><br><span class="line">	<span class="comment">//控制台跳出信息</span></span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;a href=<span class="string">"#"</span> onClick=&#123;handleClick&#125;&gt;</span><br><span class="line">	<span class="comment">//调用函数</span></span><br><span class="line">      点我</span><br><span class="line">    &lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h5 id="事件中的属性绑定"><a href="#事件中的属性绑定" class="headerlink" title="事件中的属性绑定"></a>事件中的属性绑定</h5><p>类的方法默认是不绑定this的，如果不手动绑定this的话，调用这个函数时this的值为undefined  </p>
+<p>解决方式：<br>    1.<code>this.method = this.method.bind(this);</code><br>        利用bind()来绑定</p>
+<pre><code>2.属性初始化器予以绑定  
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> (</span><br><span class="line">     &lt;button onClick=&#123;<span class="keyword">this</span>.handleClick&#125;&gt;</span><br><span class="line">       Click me</span><br><span class="line">     &lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">   );</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/OR</span></span><br><span class="line"><span class="regexp">return (</span></span><br><span class="line"><span class="regexp">     &lt;button onClick=&#123;(e) =&gt; this.handleClick(e)&#125;&gt;</span></span><br><span class="line"><span class="regexp">       Click me</span></span><br><span class="line"><span class="regexp">     &lt;/</span>button&gt;</span><br><span class="line">   );</span><br></pre></td></tr></table></figure>
+后一种函数是箭头函数[^footnote]的用法,不是很推荐使用。</code></pre><h5 id="向事件处理程序内部传参"><a href="#向事件处理程序内部传参" class="headerlink" title="向事件处理程序内部传参"></a>向事件处理程序内部传参</h5><p>1.调用内部函数</p>
+<p>2.使用<code>bind()</code>绑定参数</p>
+<p>这样一来主要的传参策略就可以得知了。</p>
+<p>[^footnote]:箭头函数表达式为ES6中的一种函数声明范式。<code>var f = ([参数]) =&gt; 表达式（单一）</code>等价于 <code>var f = function([参数]){return 表达式;}</code></p>
+<p><img src="/2020/05/09/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/react.png" alt="LOGO"></p>
 ]]></content>
   </entry>
 </search>
