@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-circle.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dliu-dqy.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="RN学习笔记-3RN的构成构成1 React根据条件进行渲染可以通过创建一个组件(func)来根据props内部的参数进行判断.最后,由render接收判断的结果并动态修改元素. 123456789101112131415161718192021function UserGreeting(props) &amp;#123;  return &lt;h1&gt;欢迎回来!&lt;&#x2F;h1&gt;;&amp;#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RN学习笔记-3">
+<meta property="og:url" content="http://dliu-dqy.github.io/2020/05/24/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3/index.html">
+<meta property="og:site_name" content="DL-楽園">
+<meta property="og:description" content="RN学习笔记-3RN的构成构成1 React根据条件进行渲染可以通过创建一个组件(func)来根据props内部的参数进行判断.最后,由render接收判断的结果并动态修改元素. 123456789101112131415161718192021function UserGreeting(props) &amp;#123;  return &lt;h1&gt;欢迎回来!&lt;&#x2F;h1&gt;;&amp;#125;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dliu-dqy.github.io/2020/05/24/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3/react.png">
+<meta property="article:published_time" content="2020-05-24T13:28:09.000Z">
+<meta property="article:modified_time" content="2020-05-24T13:31:15.347Z">
+<meta property="article:author" content="DL">
+<meta property="article:tag" content="blog ">
+<meta property="article:tag" content=" DL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://dliu-dqy.github.io/2020/05/24/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3/react.png">
+
+<link rel="canonical" href="http://dliu-dqy.github.io/2020/05/24/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>RN学习笔记-3 | DL-楽園</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="DL-楽園" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DL-楽園</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">An Elysium</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://dliu-dqy.github.io/2020/05/24/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DL">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DL-楽園">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RN学习笔记-3
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-24 21:28:09 / 修改时间：21:31:15" itemprop="dateCreated datePublished" datetime="2020-05-24T21:28:09+08:00">2020-05-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="RN学习笔记-3"><a href="#RN学习笔记-3" class="headerlink" title="RN学习笔记-3"></a>RN学习笔记-3</h1><h2 id="RN的构成"><a href="#RN的构成" class="headerlink" title="RN的构成"></a>RN的构成</h2><h3 id="构成1-React"><a href="#构成1-React" class="headerlink" title="构成1 React"></a>构成1 React</h3><h4 id="根据条件进行渲染"><a href="#根据条件进行渲染" class="headerlink" title="根据条件进行渲染"></a>根据条件进行渲染</h4><p>可以通过创建一个<strong>组件(func)</strong>来根据props内部的参数进行判断.最后,由render接收判断的结果并动态修改元素.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">UserGreeting</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎回来!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GuestGreeting</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>请先注册。<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Greeting</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> isLoggedIn = props.isLoggedIn;</span><br><span class="line">  <span class="keyword">if</span> (isLoggedIn) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">UserGreeting</span> /&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">GuestGreeting</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">ReactDOM.render(</span><br><span class="line">  <span class="comment">// 尝试修改 isLoggedIn=&#123;true&#125;:</span></span><br><span class="line">  &lt;Greeting isLoggedIn=&#123;<span class="literal">false</span>&#125; /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过变量来渲染元素"><a href="#通过变量来渲染元素" class="headerlink" title="通过变量来渲染元素"></a>通过变量来渲染元素</h4><p>例如:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isLoggedIn = <span class="keyword">this</span>.state.isLoggedIn;</span><br></pre></td></tr></table></figure>
+<p>通过定义一个新变量来存储元素</p>
+<h4 id="amp-amp-运算符"><a href="#amp-amp-运算符" class="headerlink" title="&amp;&amp;运算符"></a>&amp;&amp;运算符</h4><p>在 JavaScript 中，true &amp;&amp; expression 总是返回 expression，而 false &amp;&amp; expression 总是返回 false。</p>
+<p>因此，如果条件是 <strong>true</strong>，&amp;&amp; <strong>右侧</strong>的元素就会被渲染.<br>如果是 <strong>false</strong>，React 会<strong>忽略</strong>并跳过它.</p>
+<h4 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h4><p>? (true) : (false) 用法同上</p>
+<h4 id="阻止渲染"><a href="#阻止渲染" class="headerlink" title="阻止渲染"></a>阻止渲染</h4><p>令render返回null即可.此方法不会影响函数的其他方法的进行.</p>
+<hr>
+<h3 id="列表-Keys"><a href="#列表-Keys" class="headerlink" title="列表/Keys"></a>列表/Keys</h3><h4 id="使用map-方法来创建列表"><a href="#使用map-方法来创建列表" class="headerlink" title="使用map()方法来创建列表"></a>使用<code>map()</code>方法来创建列表</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> listItems = numbers.map(<span class="function">(<span class="params">numbers</span>) =&gt;</span></span><br><span class="line">  &lt;li&gt;&#123;numbers&#125;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+<p>创建一个数组参数,并利用<code>map()</code>函数与<code>&lt;li&gt;&lt;/li&gt;</code>标签相对应</p>
+<h4 id="Keys"><a href="#Keys" class="headerlink" title="Keys"></a>Keys</h4><p>Keys 可以在 DOM 中的某些元素被增加或删除的时候帮助 React 识别哪些元素发生了变化。是每一个元素被赋予的一个独一无二的确定的标识<br>通常使用数据的id作为Key,或者使用序列号索引 index.</p>
+<h4 id="Key的声明位于在js代码块里-而非HTML代码块里"><a href="#Key的声明位于在js代码块里-而非HTML代码块里" class="headerlink" title="Key的声明位于在js代码块里,而非HTML代码块里"></a>Key的声明位于在js代码块里,而非HTML代码块里</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ListItem</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> value = props.value;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="comment">// 错啦！你不需要在这里指定key:</span></span><br><span class="line">    &lt;li key=&#123;value.toString()&#125;&gt;</span><br><span class="line">      &#123;value&#125;</span><br><span class="line">    &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">function NumberList(props) &#123;</span></span><br><span class="line"><span class="regexp">  const numbers = props.numbers;</span></span><br><span class="line"><span class="regexp">  const listItems = numbers.map((number) =&gt;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/错啦！元素的key应该在这里指定：</span></span><br><span class="line"><span class="regexp">    &lt;ListItem value=&#123;number&#125; /</span>&gt;</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &#123;listItems&#125;</span><br><span class="line">    &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const numbers = [1, 2, 3, 4, 5];</span></span><br><span class="line"><span class="regexp">ReactDOM.render(</span></span><br><span class="line"><span class="regexp">  &lt;NumberList numbers=&#123;numbers&#125; /</span>&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>其中Key在兄弟元素中是唯一的,但在全局中不一定唯一.<br>将Key作为传递参数而非Props的属性看待<br>因为Post 组件可以读出 <code>props.id</code>，但是不能读出 <code>props.key</code>.</p>
+<p>可以在JSX中嵌入<code>map()</code></p>
+<hr>
+<p>等会儿去看看B+树了，数据库可真是个好东西，啧。</p>
+<p><img src="/2020/05/24/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3/react.png" alt="LOGO"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/09/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/" rel="prev" title="RN学习笔记-2">
+      <i class="fa fa-chevron-left"></i> RN学习笔记-2
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RN学习笔记-3"><span class="nav-number">1.</span> <span class="nav-text">RN学习笔记-3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RN的构成"><span class="nav-number">1.1.</span> <span class="nav-text">RN的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构成1-React"><span class="nav-number">1.1.1.</span> <span class="nav-text">构成1 React</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#根据条件进行渲染"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">根据条件进行渲染</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过变量来渲染元素"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">通过变量来渲染元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#amp-amp-运算符"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">&amp;&amp;运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三目运算符"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">三目运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阻止渲染"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">阻止渲染</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表-Keys"><span class="nav-number">1.1.2.</span> <span class="nav-text">列表&#x2F;Keys</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用map-方法来创建列表"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">使用map()方法来创建列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Keys"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Keys</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Key的声明位于在js代码块里-而非HTML代码块里"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">Key的声明位于在js代码块里,而非HTML代码块里</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">DL</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DL</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

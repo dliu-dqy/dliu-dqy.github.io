@@ -76,12 +76,28 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Blog-Initialized</title>
-    <url>/2020/04/16/hello-world/</url>
-    <content><![CDATA[<p>第一篇博客，稍微写点规划吧</p>
-<p>主要是为了记录一些好玩的东西，学习的积累，以及一些前端技术的实践。</p>
-<p>短期的目标是实现ナツメ的Live-2d</p>
-<p>就这样。</p>
+    <title>RN学习笔记-3</title>
+    <url>/2020/05/24/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3/</url>
+    <content><![CDATA[<h1 id="RN学习笔记-3"><a href="#RN学习笔记-3" class="headerlink" title="RN学习笔记-3"></a>RN学习笔记-3</h1><h2 id="RN的构成"><a href="#RN的构成" class="headerlink" title="RN的构成"></a>RN的构成</h2><h3 id="构成1-React"><a href="#构成1-React" class="headerlink" title="构成1 React"></a>构成1 React</h3><h4 id="根据条件进行渲染"><a href="#根据条件进行渲染" class="headerlink" title="根据条件进行渲染"></a>根据条件进行渲染</h4><p>可以通过创建一个<strong>组件(func)</strong>来根据props内部的参数进行判断.最后,由render接收判断的结果并动态修改元素.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">UserGreeting</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>欢迎回来!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GuestGreeting</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>请先注册。<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Greeting</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> isLoggedIn = props.isLoggedIn;</span><br><span class="line">  <span class="keyword">if</span> (isLoggedIn) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">UserGreeting</span> /&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">GuestGreeting</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">ReactDOM.render(</span><br><span class="line">  <span class="comment">// 尝试修改 isLoggedIn=&#123;true&#125;:</span></span><br><span class="line">  &lt;Greeting isLoggedIn=&#123;<span class="literal">false</span>&#125; /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过变量来渲染元素"><a href="#通过变量来渲染元素" class="headerlink" title="通过变量来渲染元素"></a>通过变量来渲染元素</h4><p>例如:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> isLoggedIn = <span class="keyword">this</span>.state.isLoggedIn;</span><br></pre></td></tr></table></figure>
+<p>通过定义一个新变量来存储元素</p>
+<h4 id="amp-amp-运算符"><a href="#amp-amp-运算符" class="headerlink" title="&amp;&amp;运算符"></a>&amp;&amp;运算符</h4><p>在 JavaScript 中，true &amp;&amp; expression 总是返回 expression，而 false &amp;&amp; expression 总是返回 false。</p>
+<p>因此，如果条件是 <strong>true</strong>，&amp;&amp; <strong>右侧</strong>的元素就会被渲染.<br>如果是 <strong>false</strong>，React 会<strong>忽略</strong>并跳过它.</p>
+<h4 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h4><p>? (true) : (false) 用法同上</p>
+<h4 id="阻止渲染"><a href="#阻止渲染" class="headerlink" title="阻止渲染"></a>阻止渲染</h4><p>令render返回null即可.此方法不会影响函数的其他方法的进行.</p>
+<hr>
+<h3 id="列表-Keys"><a href="#列表-Keys" class="headerlink" title="列表/Keys"></a>列表/Keys</h3><h4 id="使用map-方法来创建列表"><a href="#使用map-方法来创建列表" class="headerlink" title="使用map()方法来创建列表"></a>使用<code>map()</code>方法来创建列表</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> listItems = numbers.map(<span class="function">(<span class="params">numbers</span>) =&gt;</span></span><br><span class="line">  &lt;li&gt;&#123;numbers&#125;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+<p>创建一个数组参数,并利用<code>map()</code>函数与<code>&lt;li&gt;&lt;/li&gt;</code>标签相对应</p>
+<h4 id="Keys"><a href="#Keys" class="headerlink" title="Keys"></a>Keys</h4><p>Keys 可以在 DOM 中的某些元素被增加或删除的时候帮助 React 识别哪些元素发生了变化。是每一个元素被赋予的一个独一无二的确定的标识<br>通常使用数据的id作为Key,或者使用序列号索引 index.</p>
+<h4 id="Key的声明位于在js代码块里-而非HTML代码块里"><a href="#Key的声明位于在js代码块里-而非HTML代码块里" class="headerlink" title="Key的声明位于在js代码块里,而非HTML代码块里"></a>Key的声明位于在js代码块里,而非HTML代码块里</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ListItem</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> value = props.value;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="comment">// 错啦！你不需要在这里指定key:</span></span><br><span class="line">    &lt;li key=&#123;value.toString()&#125;&gt;</span><br><span class="line">      &#123;value&#125;</span><br><span class="line">    &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">function NumberList(props) &#123;</span></span><br><span class="line"><span class="regexp">  const numbers = props.numbers;</span></span><br><span class="line"><span class="regexp">  const listItems = numbers.map((number) =&gt;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/错啦！元素的key应该在这里指定：</span></span><br><span class="line"><span class="regexp">    &lt;ListItem value=&#123;number&#125; /</span>&gt;</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &#123;listItems&#125;</span><br><span class="line">    &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const numbers = [1, 2, 3, 4, 5];</span></span><br><span class="line"><span class="regexp">ReactDOM.render(</span></span><br><span class="line"><span class="regexp">  &lt;NumberList numbers=&#123;numbers&#125; /</span>&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>其中Key在兄弟元素中是唯一的,但在全局中不一定唯一.<br>将Key作为传递参数而非Props的属性看待<br>因为Post 组件可以读出 <code>props.id</code>，但是不能读出 <code>props.key</code>.</p>
+<p>可以在JSX中嵌入<code>map()</code></p>
+<hr>
+<p>等会儿去看看B+树了，数据库可真是个好东西，啧。</p>
+<p><img src="/2020/05/24/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-3/react.png" alt="LOGO"></p>
 ]]></content>
   </entry>
   <entry>
@@ -134,6 +150,15 @@
 <p>今天就看到这里吧。就当React入门惹</p>
 <p>资料参考：<a href="http://www.runoob.com" target="_blank" rel="noopener">www.runoob.com</a></p>
 <p><img src="/2020/05/04/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/react.png" alt="LOGO"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Blog-Initialized</title>
+    <url>/2020/04/16/hello-world/</url>
+    <content><![CDATA[<p>第一篇博客，稍微写点规划吧</p>
+<p>主要是为了记录一些好玩的东西，学习的积累，以及一些前端技术的实践。</p>
+<p>短期的目标是实现ナツメ的Live-2d</p>
+<p>就这样。</p>
 ]]></content>
   </entry>
 </search>
