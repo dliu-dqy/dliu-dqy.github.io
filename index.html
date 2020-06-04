@@ -492,6 +492,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://dliu-dqy.github.io/2020/06/04/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DL">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DL-楽園">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/04/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-5/" class="post-title-link" itemprop="url">RN学习笔记-5</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-04 16:39:52 / 修改时间：17:31:17" itemprop="dateCreated datePublished" datetime="2020-06-04T16:39:52+08:00">2020-06-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="RN的构成"><a href="#RN的构成" class="headerlink" title="RN的构成"></a>RN的构成</h1><h2 id="构成1-React"><a href="#构成1-React" class="headerlink" title="构成1 React"></a>构成1 React</h2><h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p>将生命周期分为三个状态：  </p>
+<blockquote>
+<p><strong>Mounting</strong>:已插入真实DOM<br><strong>Updating</strong>：正在被重新渲染<br><strong>Unmounting</strong>：已移出真实 DOM</p>
+</blockquote>
+<p>生命周期的方法：</p>
+<p><img src="/2020/06/04/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-5/func.jpg" alt="functions"></p>
+<p>通过重写这些方法来实现循环渲染等功能</p>
+<p>可以通过<strong>componentDidMount</strong>方法中的Ajax来获取数据，使用Jquery来完成Ajax请求</p>
+<h3 id="表单与事件"><a href="#表单与事件" class="headerlink" title="表单与事件"></a>表单与事件</h3><p>OnChange监听输入框的值的变化，更新state.</p>
+<p>在父组件上创建事件句柄,作为Prop传递到子组件上</p>
+<p>在 React 中，不使用 selected 属性，而在根 select 标签上用 value 属性来表示选中项。</p>
+<p>处理多个 input 元素时，给每个元素添加一个 name 属性，处理event.target.name </p>
+<h3 id="Ref属性"><a href="#Ref属性" class="headerlink" title="Ref属性"></a>Ref属性</h3><p>这个特殊的属性允许你引用 render() 返回的相应的支撑实例（ backing instance ）。这样就可以确保在任何时间总是拿到正确的实例。</p>
+<p>React 实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  handleClick() &#123;</span><br><span class="line">    <span class="comment">// 使用原生的 DOM API 获取焦点</span></span><br><span class="line">    <span class="keyword">this</span>.refs.myInput.focus();</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">//  当组件插入到 DOM 后，ref 属性添加一个组件的引用于到 this.refs</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input type=<span class="string">"text"</span> ref=<span class="string">"myInput"</span> /&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=<span class="string">"button"</span></span><br><span class="line">          value=<span class="string">"点我输入框获取焦点"</span></span><br><span class="line">          onClick=&#123;<span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"> </span></span><br><span class="line"><span class="regexp">ReactDOM.render(</span></span><br><span class="line"><span class="regexp">  &lt;MyComponent /</span>&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>それなら、第一部は終わります<br>接着去看看官方文档了</p>
+<p><img src="/2020/06/04/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-5/react.png" alt="LOGO"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://dliu-dqy.github.io/2020/05/30/RN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1148,7 +1224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
